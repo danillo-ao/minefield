@@ -1,0 +1,28 @@
+module.exports = {
+  arrowParens: 'avoid',
+  bracketSameLine: false,
+  bracketSpacing: true,
+  singleQuote: true,
+  trailingComma: 'all',
+
+  importOrder: [
+    '^react*',
+    '<THIRD_PARTY_MODULES>',
+    '^@__mocks__/(.*)$',
+    '^@/(.*)$',
+    '^@src/(.*)$',
+    '^@common/(.*)$',
+    '^@components/(.*)$',
+    '^@hooks/(.*)$',
+    '^@context/(.*)$',
+    '^@screens/(.*)$',
+    '^@services/(.*)$',
+    '^@theme/(.*)$',
+    '^@values/(.*)$',
+    '^@database/(.*)$',
+    '^@utils/(.*)$',
+    '^[./]',
+  ],
+  importOrderSeparation: true,
+  importOrderSortSpecifiers: true,
+};

@@ -1,0 +1,15 @@
+{
+    "name": "danillo.dev",
+    "short_name": "danillo.dev",
+    "description": "Danillo Alves de Oliveira, 24 anos. Desenvolvedor front-end com aproximadamente 7 anos de experiência",
+    "icons": [
+        {
+            "src": "/android-chrome-48x48.png",
+            "sizes": "48x48",
+            "type": "image/png"
+        }
+    ],
+    "theme_color": "#010a27",
+    "background_color": "#010a27",
+    "display": "standalone"
+}
