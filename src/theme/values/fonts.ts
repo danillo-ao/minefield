@@ -12,15 +12,10 @@ const lato = Lato({
   subsets: ['latin'],
 });
 
-// const nameFont = Josefin_Sans({
-//   weight: ['700'],
-//   subsets: ['latin'],
-// });
-
-const nameFont = localFont({
+const digitalFont = localFont({
   src: [
     {
-      path: '../../assets/fonts/leixo.woff2',
+      path: '../../assets/fonts/digital-7.woff2',
       weight: '400',
       style: 'normal',
     },
@@ -32,11 +27,10 @@ const nameFont = localFont({
 export const fonts = {
   montserrat: montserrat.style.fontFamily,
   lato: lato.style.fontFamily,
-  name: nameFont.style.fontFamily,
+  digital: digitalFont.style.fontFamily,
   //
   default: '$lato',
   title: '$montserrat',
-  subtitle: '$oswald',
 };
 
 export const fontSizes = {

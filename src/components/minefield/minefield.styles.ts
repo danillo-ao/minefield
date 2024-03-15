@@ -1,10 +1,40 @@
-import { styled } from '@theme/theme';
+import { keyframes, styled } from '@theme/theme';
+
+const scaleUp = keyframes({
+  '0%': { transform: 'scale(0)' },
+  '99.999%': { transform: 'scale(1)' },
+  '100%': { transform: 'scale(1)' },
+});
 
 export const MineFieldContent = styled('div', {
+  display: 'flex',
+  flex: 1,
+  height: '100%',
+  flexDirection: 'column',
+});
+
+export const MineFieldOptions = styled('div', {
+  display: 'flex',
+  flexDirection: 'row',
+  alignItems: 'center',
+  justifyContent: 'center',
+  py: '$10',
+});
+
+export const MineFieldBody = styled('div', {
+  display: 'flex',
+  flexDirection: 'row',
+  alignItems: 'center',
+  justifyContent: 'center',
+  flex: 1,
+});
+
+export const MineFieldGame = styled('div', {
   display: 'flex',
   flexDirection: 'column',
   alignItems: 'center',
   justifyContent: 'center',
+  flex: 1,
 });
 
 export const MineFieldRow = styled('div', {
@@ -15,8 +45,8 @@ export const MineFieldRow = styled('div', {
 });
 
 export const MineFieldCell = styled('button', {
-  width: 40,
-  height: 40,
+  width: 35,
+  height: 35,
   display: 'flex',
   flexDirection: 'column',
   alignItems: 'center',
@@ -28,15 +58,41 @@ export const MineFieldCell = styled('button', {
   borderLeftColor: '$white',
   borderTopColor: '$white',
   bg: '$cellBackground',
+  transform: 'scale(0)',
   transition: '0.3s ease',
+  animation: `${scaleUp} 0.2s ease forwards`,
+  position: 'relative',
 
-  '&:active': {
-    borderWidth: 1,
-    borderColor: '$borderDark',
-    bg: '$cellBackground',
+  '&.highlight': {
+    '&:before': {
+      content: '',
+      width: '100%',
+      height: '100%',
+      position: 'absolute',
+      left: 0,
+      top: 0,
+      bg: '$red500',
+      opacity: 0.2,
+    },
   },
 
   variants: {
+    pinned: {
+      true: {},
+      false: {
+        '&:active': {
+          borderWidth: 1,
+          borderColor: '$borderDark',
+          bg: '$cellBackground',
+        },
+      },
+    },
+
+    exploded: {
+      true: { bg: '$exploded' },
+      false: {},
+    },
+
     revealed: {
       true: {
         borderWidth: 1,

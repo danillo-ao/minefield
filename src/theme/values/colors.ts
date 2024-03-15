@@ -12,6 +12,7 @@ export const colors = {
   cellBackgroundRevealed: '#b1b1b1',
 
   borderDark: '#6c6c6c',
+  exploded: '#ff0000',
 
   // text color
   text0: '#FFFFFF',

@@ -5,4 +5,5 @@ export const fieldCell: FieldCell = {
   bomb: false,
   pinned: false,
   count: 0,
+  exploded: false,
 };

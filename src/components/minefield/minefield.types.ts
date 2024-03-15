@@ -3,6 +3,7 @@ export interface FieldCell {
   bomb: boolean;
   pinned: boolean;
   count: number;
+  exploded: boolean;
 }
 
 export type FieldRows = FieldCell[];
