@@ -18,7 +18,59 @@ export const MineFieldOptions = styled('div', {
   flexDirection: 'row',
   alignItems: 'center',
   justifyContent: 'center',
+  gap: '$3',
   py: '$10',
+});
+
+export const MineFieldAvailablePinsContent = styled('div', {
+  display: 'flex',
+  flexDirection: 'row',
+  width: '100%',
+  gap: '$3',
+  py: '$2',
+});
+
+export const MineFieldAvailablePins = styled('div', {
+  display: 'flex',
+  flexDirection: 'row',
+  backgroundColor: '#fff',
+  pa: '$2',
+  gap: '$2',
+  borderRadius: '$1',
+  alignItems: 'center',
+  justifyContent: 'center',
+  color: '#000',
+});
+
+export const MineFieldInputOptionContent = styled('div', {
+  display: 'flex',
+  width: 150,
+  height: 56,
+  flexDirection: 'column',
+  justifyContent: 'flex-end',
+});
+
+export const MineFieldInputOption = styled('input', {
+  display: 'flex',
+  width: '100%',
+  height: 40,
+  borderRadius: '$1',
+  border: 'none',
+  pa: '$2',
+});
+
+export const MineFieldButtonOption = styled('button', {
+  display: 'flex',
+  cursor: 'pointer',
+  width: '100%',
+  height: 40,
+  borderRadius: '$1',
+  border: 'none',
+  alignItems: 'center',
+  justifyContent: 'center',
+  pa: '$2',
+  fontWeight: 'bold',
+  color: '#fff',
 });
 
 export const MineFieldBody = styled('div', {
@@ -34,7 +86,6 @@ export const MineFieldGame = styled('div', {
   flexDirection: 'column',
   alignItems: 'center',
   justifyContent: 'center',
-  flex: 1,
 });
 
 export const MineFieldRow = styled('div', {
@@ -124,4 +175,43 @@ export const FieldCount = styled('span', {
       8: { color: '#081d22' },
     },
   },
+});
+
+export const WinContent = styled('div', {
+  width: '100%',
+  height: '100%',
+  display: 'none',
+  position: 'fixed',
+  flexDirection: 'column',
+  gap: '$4',
+  alignItems: 'center',
+  justifyContent: 'center',
+  left: 0,
+  top: 0,
+  backgroundColor: 'rgba(0,0,0,0.8)',
+});
+export const ChubzImages = styled('div', {
+  width: '100%',
+  display: 'flex',
+  zIndex: -1,
+  position: 'fixed',
+  gap: '$1',
+  left: 0,
+  bottom: 0,
+  flexDirection: 'row',
+  justifyContent: 'center',
+
+  img: {
+    width: 100,
+    height: 100,
+  },
+});
+
+export const WinContentLabel = styled('p', {
+  color: '#fff',
+  textTransform: 'uppercase',
+  fontWeight: 'bold',
+  fontSize: 25,
+  textShadow:
+    '-1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000',
 });

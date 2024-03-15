@@ -23,9 +23,15 @@ const Minefield: React.FC = () => {
     React.useState<number>(bombs);
 
   const startGame = () => {
+    const getWinContent = document.getElementById('win-content');
+    if (getWinContent) {
+      getWinContent.style.display = 'none';
+    }
+
     setExploded(false);
 
     setField([]);
+    setTotalAvailablePins(bombs);
     setTimeout(() => {
       createField();
     }, 50);
@@ -138,10 +144,11 @@ const Minefield: React.FC = () => {
       pinned === rightPinned &&
       rightPinned === bombs
     ) {
-      console.log('YOU WIN');
+      const getWinContent = document.getElementById('win-content');
+      if (getWinContent) {
+        getWinContent.style.display = 'flex';
+      }
     }
-
-    console.log({ total, mustReveal, revealed, pinned, rightPinned });
   };
 
   // handle functions
@@ -300,8 +307,13 @@ const Minefield: React.FC = () => {
     const _field = [...field];
     const cell = _field[row][col];
 
+    const total = totalAvailablePins + (!cell.pinned ? -1 : 1);
+
+    if (total < 0) return;
     if (cell.revealed) return;
+
     cell.pinned = !cell.pinned;
+    setTotalAvailablePins(total);
 
     _field[row][col] = cell;
     setField(_field);
@@ -515,38 +527,74 @@ const Minefield: React.FC = () => {
     createField();
   }, []);
 
+  const helpBackground = visualHelp ? '#01a648' : '#fe3353';
+  const helpBackgroundHover = visualHelp ? '#00785d' : '#fd274c';
+
   return (
     <Styles.MineFieldContent>
       <Styles.MineFieldOptions>
-        <input
-          type="number"
-          value={rows}
-          onChange={e => setRows(parseInt(e.target.value, 10))}
-        />
-        <input
-          type="number"
-          value={cols}
-          onChange={e => setCols(parseInt(e.target.value, 10))}
-        />
-        <input
-          type="number"
-          value={bombs}
-          onChange={e => setBombs(parseInt(e.target.value, 10))}
-        />
-        <button onClick={startGame}>create field</button>
-        <button
-          onClick={() => {
-            setVisualHelp(!visualHelp);
-          }}
-        >
-          toggle visual help
-        </button>
-      </Styles.MineFieldOptions>
+        <Styles.MineFieldInputOptionContent>
+          LINHAS
+          <Styles.MineFieldInputOption
+            type="number"
+            value={rows}
+            onChange={e => setRows(parseInt(e.target.value, 10))}
+          />
+        </Styles.MineFieldInputOptionContent>
 
-      <Styles.MineFieldOptions>{totalAvailablePins}</Styles.MineFieldOptions>
+        <Styles.MineFieldInputOptionContent>
+          COLUNAS
+          <Styles.MineFieldInputOption
+            type="number"
+            value={cols}
+            onChange={e => setCols(parseInt(e.target.value, 10))}
+          />
+        </Styles.MineFieldInputOptionContent>
+
+        <Styles.MineFieldInputOptionContent>
+          QNTD. BOMBAS
+          <Styles.MineFieldInputOption
+            type="number"
+            value={bombs}
+            onChange={e => setBombs(parseInt(e.target.value, 10))}
+          />
+        </Styles.MineFieldInputOptionContent>
+
+        <Styles.MineFieldInputOptionContent>
+          <Styles.MineFieldButtonOption
+            onClick={startGame}
+            css={{
+              backgroundColor: '#00b896',
+              '&:hover': { backgroundColor: '#008877' },
+            }}
+          >
+            Gerar mapa
+          </Styles.MineFieldButtonOption>
+        </Styles.MineFieldInputOptionContent>
+
+        <Styles.MineFieldInputOptionContent>
+          <Styles.MineFieldButtonOption
+            css={{
+              background: helpBackground,
+              '&:hover': { background: helpBackgroundHover },
+            }}
+            onClick={() => {
+              setVisualHelp(!visualHelp);
+            }}
+          >
+            {visualHelp ? '(OFF) ajuda visual' : '(ON) ajuda visual'}
+          </Styles.MineFieldButtonOption>
+        </Styles.MineFieldInputOptionContent>
+      </Styles.MineFieldOptions>
 
       <Styles.MineFieldBody>
         <Styles.MineFieldGame>
+          <Styles.MineFieldAvailablePinsContent>
+            <Styles.MineFieldAvailablePins>
+              <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAb0lEQVQ4jbWTsQ2AMAwE/YT0mYLsv4Y3YAsWQE+VghATEotvrT+dZRkkZTaqGuEBiIgsrnYXkEHJeFVczeK0wUC5DdiJEUB7hQLZ+jbdMyIk8jxMK/cZTQOEdBtYFg9AXaxTg/5b4Wv8v6Cq0QO4AHiQLEcsYzd9AAAAAElFTkSuQmCC" />
+              {totalAvailablePins}
+            </Styles.MineFieldAvailablePins>
+          </Styles.MineFieldAvailablePinsContent>
           {field.map((row, rowKey) => (
             <Styles.MineFieldRow key={`row-${rowKey}`}>
               {row.map((cell, cellKey) => {
@@ -576,6 +624,30 @@ const Minefield: React.FC = () => {
         </Styles.MineFieldGame>
       </Styles.MineFieldBody>
       {/**/}
+
+      <Styles.WinContent id="win-content">
+        <Styles.WinContentLabel>VOCÊ VENCEU!</Styles.WinContentLabel>
+        <img
+          src="https://media1.tenor.com/m/WVKlY9QBd70AAAAC/you-win-the-office.gif"
+          alt=""
+        />
+
+        <Styles.MineFieldButtonOption
+          onClick={startGame}
+          css={{
+            width: 150,
+            backgroundColor: '#00b896',
+            '&:hover': { backgroundColor: '#008877' },
+          }}
+        >
+          Novo jogo
+        </Styles.MineFieldButtonOption>
+      </Styles.WinContent>
+
+      <Styles.ChubzImages>
+        <img src="https://iili.io/JWi8pta.png" alt="" />
+        <img src="https://iili.io/JWiSrJI.png" alt="" />
+      </Styles.ChubzImages>
     </Styles.MineFieldContent>
   );
 };
