@@ -643,11 +643,6 @@ const Minefield: React.FC = () => {
           Novo jogo
         </Styles.MineFieldButtonOption>
       </Styles.WinContent>
-
-      <Styles.ChubzImages>
-        <img src="https://iili.io/JWi8pta.png" alt="" />
-        <img src="https://iili.io/JWiSrJI.png" alt="" />
-      </Styles.ChubzImages>
     </Styles.MineFieldContent>
   );
 };

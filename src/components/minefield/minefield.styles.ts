@@ -190,22 +190,6 @@ export const WinContent = styled('div', {
   top: 0,
   backgroundColor: 'rgba(0,0,0,0.8)',
 });
-export const ChubzImages = styled('div', {
-  width: '100%',
-  display: 'flex',
-  zIndex: -1,
-  position: 'fixed',
-  gap: '$1',
-  left: 0,
-  bottom: 0,
-  flexDirection: 'row',
-  justifyContent: 'center',
-
-  img: {
-    width: 100,
-    height: 100,
-  },
-});
 
 export const WinContentLabel = styled('p', {
   color: '#fff',
